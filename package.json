@@ -4,7 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "ts-node script.ts"
+		"dev": "ts-node script.ts",
+		"prisma": "npx prisma studio",
+		"prisma-update": "npx prisma generate"
 	},
 	"keywords": [],
 	"author": "",

@@ -11,6 +11,8 @@ const main = async () => {
 		},
 	});
 
+	console.log(createUser);
+
 	//  CREATING A USER WITH POST
 	const createUserWithPost = await prisma.user.create({
 		data: {
@@ -24,17 +26,22 @@ const main = async () => {
 		},
 	});
 
+	console.log(createUserWithPost);
+
 	// CREATING A POST WITH USER
 	const post = await prisma.post.create({
 		data: {
 			title: "My first post",
 			content: "This is my first post for testing prisma client",
-			authorId: 1,
+			authorId: "62e79a0282b03751994e67ee",
 		},
 	});
 
+	console.log(post);
+
 	// GETTING ALL USERS FROM DATABASE
 	const users = await prisma.user.findMany();
+	console.log(users);
 
 	// GETTING A USER WITH POSTS
 	const userWithPost = await prisma.user.findMany({
@@ -43,6 +50,8 @@ const main = async () => {
 		},
 	});
 
+	console.log(userWithPost);
+
 	// GETTING A POST WITH AUTHOR
 	const postWithAuthor = await prisma.post.findMany({
 		include: {
@@ -50,46 +59,62 @@ const main = async () => {
 		},
 	});
 
+	console.log(postWithAuthor);
+
 	// UPDATING A USER
 	const updatedUser = await prisma.user.update({
 		where: {
-			id: 1,
+			id: "62e79a0282b03751994e67ee",
 		},
 		data: {
 			name: "KidIbra",
+			email: "kidibra2020@gmail.com",
 		},
 	});
+
+	console.log(updatedUser);
 
 	// UPDATEING A POST
 	const updatedPost = await prisma.post.update({
 		where: {
-			id: 2,
+			id: "62e79b513ab1865641300bd3",
 		},
 		data: {
 			published: true,
 		},
 	});
 
+	console.log(updatedPost);
+
 	// DELETING A USER
 	const deletedUser = await prisma.user.delete({
 		where: {
-			id: 2,
+			id: "62e79ae626bf1eb09e36f064",
 		},
 	});
+
+	console.log(deletedUser);
 
 	// DELETING A POST
 	const deletedPost = await prisma.post.delete({
 		where: {
-			id: 2,
+			id: "62e79ae726bf1eb09e36f065",
 		},
 	});
+
+	console.log(deletedPost);
 
 	// GETTING A SINGLE USER
 	const user = await prisma.user.findUnique({
 		where: {
-			id: 1,
+			id: "62e79a0282b03751994e67ee",
+		},
+		include: {
+			posts: true,
 		},
 	});
+
+	console.log(user);
 };
 
 main()
